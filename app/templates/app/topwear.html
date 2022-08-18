@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Top Wear{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <ul class="list-group">
+        <a href="{% url 'topwear' %}" class="list-group-item">All T-shirt</a>
+        <a href="{% url 'topweardata' 'Arrow' %}" class="list-group-item">Arrow</a>
+        <a href="{% url 'topweardata' 'Ajio' %}" class="list-group-item">Ajio</a>
+        <a href="{% url 'topweardata' 'Blackberrys' %}" class="list-group-item">Black Berrys</a>
+        <a href="{% url 'topweardata' 'Gucci' %}" class="list-group-item">Gucci</a>
+        <a href="{% url 'topweardata' 'HRX' %}" class="list-group-item">HRX</a>
+        <a href="{% url 'topweardata' 'below' %}" class="list-group-item">below 400</a>
+        <a href="{% url 'topweardata' 'above' %}" class="list-group-item">above or equal 400</a>
+      </ul>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+    <div class="row">
+   {% for i in topwear %}
+    <div class="card col-sm-4 text-center mb-4 me-3">
+    <a href="{% url 'product-detail' i.id %}" class='btn'>
+    <img src="{{i.product_image.url}}" class="card-img-top" alt="mobile">
+    <div class="card-body">
+      <h5 class="card-title">{{i.title}}</h5>
+      <p class="card-text">{{i.discounted_price}} <small class="fw-light text-decoration-line-through">{{i.selling_price}}</small></p>
+    </div>
+    </a>
+  </div>
+   {% endfor %}
+  </div>
+ </div>
+</div>
+</div>
+{% endblock main-content %}
